@@ -1,0 +1,19 @@
+[Unit]
+Description=CAOS Print
+
+[Service]
+User=print
+Group=print
+Type=simple
+Restart=on-failure
+UMask=0027
+
+WorkingDirectory=/home/print/print
+ExecStart=python3 /home/print/print/server.py
+
+SyslogIdentifier=caos_print
+StandardOutput=append:/var/log/caos_print.log
+StandardError=append:/var/log/caos_print.log
+
+[Install]
+WantedBy=multi-user.target
